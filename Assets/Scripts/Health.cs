@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [field: SerializeField] public int _CurrentHealth { get; private set; }
+    [field: SerializeField] public int _MaxHealth { get; private set; }
+    public void InitializeHealth(int health)
     {
-        
+        _MaxHealth = health;
+        _CurrentHealth = _MaxHealth;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Heal(int healAmount)
     {
-        
+        _CurrentHealth += healAmount;
+    }
+    public void Damage(int damageAmount)
+    {
+        _CurrentHealth -= damageAmount;
     }
 }

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerStateMachine
 {
-    public PlayerState CurrentState { get; private set; }
+    public PlayerState _CurrentState { get; private set; }
 
     public void InitializeStateMachine(PlayerState state)
     {
-        CurrentState = state;
-        CurrentState.EnterState();
+        _CurrentState = state;
+        _CurrentState.EnterState();
     }
     public void ChangeState(PlayerState state)
     {
-        CurrentState.ExitState();
-        CurrentState = state;
-        CurrentState.EnterState();
+        _CurrentState.ExitState();
+        _CurrentState = state;
+        _CurrentState.EnterState();
     }
 }
