@@ -20,7 +20,7 @@ public class PlayerControls : MonoBehaviour
     [field: SerializeField] public bool _Grab { get; private set; }
     public void OnGrab(InputValue value) => ProcessGrab(value.isPressed);
     public void UseGrab() => _Grab = false;
-    
+
     // Process Inputs Below
     private void ProcessMove(Vector2 input)
     {

@@ -22,4 +22,14 @@ public class PlayerGroundedSuperState : PlayerState
         _Attack = _Player._PlayerControls._Attack;
         _Grab = _Player._PlayerControls._Grab;
     }
+
+    public override void CheckTransitions()
+    {
+        base.CheckTransitions();
+
+        if (_Player._CheckGround._IsGrounded() == false)
+        {
+            _StateMachine.ChangeState(_Player._FallingState);
+        }
+    }
 }

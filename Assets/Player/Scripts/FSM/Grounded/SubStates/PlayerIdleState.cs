@@ -12,10 +12,15 @@ public class PlayerIdleState : PlayerGroundedSuperState
     public override void CheckTransitions()
     {
         base.CheckTransitions();
-        if (_Player._CheckGround._IsGrounded() == false)
-        {
-            _StateMachine.ChangeState(_Player._FallingState);
-        }
+        
+        if (_Move.x != 0) _StateMachine.ChangeState(_Player._MoveState);
+    }
+
+    public override void EnterState()
+    {
+        base.EnterState();
+
+        _Player._MovementController.ZeroStopVelocity();
     }
 
     // end

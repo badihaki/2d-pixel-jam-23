@@ -12,8 +12,8 @@ TagManager:
   - Walkable
   - Water
   - UI
-  - 
-  - 
+  - Body
+  - Item
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 3138671849
+    locked: 0
+  - name: Characters
+    uniqueID: 3209483769
     locked: 0

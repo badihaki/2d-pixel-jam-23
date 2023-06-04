@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         _PlayerControls = GetComponent<PlayerControls>();
         _Animator = GetComponent<Animator>();
         _MovementController = GetComponent<PlayerMovement>();
+        _MovementController.InitializeController();
 
         InitializeStateMachine();
     }
