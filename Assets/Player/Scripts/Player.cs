@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [field: SerializeField] public CheckGround _CheckGround { get; private set; }
     [field: SerializeField] public PlayerControls _PlayerControls { get; private set; }
     [field: SerializeField] public Animator _Animator { get; private set; }
+    [field: SerializeField] public PlayerMovement _MovementController { get; private set; }
 
     // state machine
     private PlayerStateMachine stateMachine;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
         _CheckGround = GetComponent<CheckGround>();
         _PlayerControls = GetComponent<PlayerControls>();
         _Animator = GetComponent<Animator>();
+        _MovementController = GetComponent<PlayerMovement>();
 
         InitializeStateMachine();
     }
