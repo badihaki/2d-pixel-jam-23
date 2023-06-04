@@ -23,10 +23,14 @@ public class PlayerState
     {
         _StateEnterTime = Time.time;
         _IsExitingState = false;
+
+        _Player._Animator.SetBool(_StateAnimationName, true);
+        Debug.Log("Entering state " + _StateAnimationName + " at " + _StateEnterTime);
     }
     public virtual void ExitState()
     {
         _IsExitingState = true;
+        _Player._Animator.SetBool(_StateAnimationName, false);
     }
 
     public virtual void AnimationTrigger()
