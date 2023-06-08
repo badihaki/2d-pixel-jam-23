@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [field: SerializeField] public PlayerControls _PlayerControls { get; private set; }
     [field: SerializeField] public Animator _Animator { get; private set; }
     [field: SerializeField] public PlayerMovement _MovementController { get; private set; }
+    [field: SerializeField] public PlayerWeapon _WeaponController { get; private set; }
 
     // state machine
     private PlayerStateMachine stateMachine;
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
         _Animator = GetComponent<Animator>();
         _MovementController = GetComponent<PlayerMovement>();
         _MovementController.InitializeController();
+        _WeaponController = GetComponent<PlayerWeapon>();
+        _WeaponController.InitializeWeaponHolder(this);
 
         InitializeStateMachine();
     }
@@ -59,5 +62,10 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine?._CurrentState.PhysicsUpdate();
+    }
+
+    public void AnimationTrigger()
+    {
+        stateMachine._CurrentState.AnimationTrigger();
     }
 }

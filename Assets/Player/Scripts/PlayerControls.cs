@@ -31,22 +31,10 @@ public class PlayerControls : MonoBehaviour
         else if (modifiedInput.y < 0) modifiedInput.y = -1;
         _Move = modifiedInput;
     }
-    private void ProcessJump(bool input)
-    {
-        _Jump = input;
-    }
-    private void ProcessAttack(bool input)
-    {
-        _Attack = input;
-    }
-    private void ProcessWeapon(bool input)
-    {
-        _Weapon = input;
-    }
-    private void ProcessGrab(bool input)
-    {
-        _Grab = input;
-    }
+    private void ProcessJump(bool input) => _Jump = input;
+    private void ProcessAttack(bool input) => _Attack = input;
+    private void ProcessWeapon(bool input) => _Weapon = input;
+    private void ProcessGrab(bool input) => _Grab = input;
 
     // end
 }

@@ -12,6 +12,8 @@ public class PlayerState
     protected float _StateEnterTime;
     protected bool _IsExitingState;
 
+    private bool holdingSword;
+
     public PlayerState(Player player, PlayerStateMachine stateMachine, string stateAnimationName)
     {
         _Player = player;
@@ -45,6 +47,7 @@ public class PlayerState
     public virtual void LogicUpdate()
     {
         CheckTransitions();
+        holdingSword = _Player._WeaponController.holdingSword;
     }
 
     public virtual void PhysicsUpdate()
