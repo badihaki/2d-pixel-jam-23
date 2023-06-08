@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     public PlayerIdleState _IdleState { get; private set; }
     public PlayerMoveState _MoveState { get; private set; }
     public PlayerFallingState _FallingState { get; private set; }
+    public PlayerPunch1State _Punch1State { get; private set; }
+    public PlayerPunch2State _Punch2State { get; private set; }
+    public PlayerPunch3State _Punch3State { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +52,9 @@ public class Player : MonoBehaviour
         _IdleState = new PlayerIdleState(this, stateMachine, "idle");
         _MoveState = new PlayerMoveState(this, stateMachine, "move");
         _FallingState = new PlayerFallingState(this, stateMachine, "falling");
+        _Punch1State = new PlayerPunch1State(this, stateMachine, "punch1");
+        _Punch2State = new PlayerPunch2State(this, stateMachine, "punch2");
+        _Punch3State = new PlayerPunch3State(this, stateMachine, "punch3");
 
         // start the state machine
         stateMachine.InitializeStateMachine(_IdleState);
@@ -64,8 +70,6 @@ public class Player : MonoBehaviour
         stateMachine?._CurrentState.PhysicsUpdate();
     }
 
-    public void AnimationTrigger()
-    {
-        stateMachine._CurrentState.AnimationTrigger();
-    }
+    public void AnimationTrigger() => stateMachine._CurrentState.AnimationTrigger();
+    public void AnimationFinishTrigger() => stateMachine._CurrentState.AnimationFinishedTrigger();
 }

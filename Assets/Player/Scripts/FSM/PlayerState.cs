@@ -11,8 +11,9 @@ public class PlayerState
     protected string _StateAnimationName;
     protected float _StateEnterTime;
     protected bool _IsExitingState;
+    protected bool _IsAnimationFinished;
 
-    private bool holdingSword;
+    protected bool _HoldingSword;
 
     public PlayerState(Player player, PlayerStateMachine stateMachine, string stateAnimationName)
     {
@@ -25,6 +26,7 @@ public class PlayerState
     {
         _StateEnterTime = Time.time;
         _IsExitingState = false;
+        _IsAnimationFinished = false;
 
         _Player._Animator.SetBool(_StateAnimationName, true);
         Debug.Log("Entering state " + _StateAnimationName + " at " + _StateEnterTime);
@@ -47,13 +49,15 @@ public class PlayerState
     public virtual void LogicUpdate()
     {
         CheckTransitions();
-        holdingSword = _Player._WeaponController.holdingSword;
+        _HoldingSword = _Player._WeaponController.holdingSword;
     }
 
     public virtual void PhysicsUpdate()
     {
         //
     }
+
+    public virtual void AnimationFinishedTrigger() => _IsAnimationFinished = true;
 
 
     // end
