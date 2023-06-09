@@ -27,9 +27,7 @@ public class PlayerGroundedSuperState : PlayerState
     {
         base.CheckTransitions();
 
-        if (_Player._CheckGround._IsGrounded() == false)
-        {
-            _StateMachine.ChangeState(_Player._FallingState);
-        }
+        if (_Player._CheckGround._IsGrounded() == false) _StateMachine.ChangeState(_Player._FallingState);
+        if (_Jump) _StateMachine.ChangeState(_Player._JumpState);
     }
 }
