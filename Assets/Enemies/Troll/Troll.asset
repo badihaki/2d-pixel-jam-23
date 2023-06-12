@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d373e828958d93240b80791385d3b9f7, type: 3}
-  m_Name: PlayerChar
+  m_Name: Troll
   m_EditorClassIdentifier: 
-  <_Health>k__BackingField: 5
-  <_Attack>k__BackingField: 1
-  <_MoveForce>k__BackingField: {x: 1.5, y: 2.35}
+  <_Health>k__BackingField: 0
+  <_Attack>k__BackingField: 0
+  <_MoveForce>k__BackingField: {x: 0, y: 0}

@@ -29,7 +29,7 @@ public class PlayerState
         _IsAnimationFinished = false;
 
         _Player._Animator.SetBool(_StateAnimationName, true);
-        Debug.Log("Entering state " + _StateAnimationName + " at " + _StateEnterTime);
+        // Debug.Log("Entering state " + _StateAnimationName + " at " + _StateEnterTime);
     }
     public virtual void ExitState()
     {
@@ -49,7 +49,7 @@ public class PlayerState
     public virtual void LogicUpdate()
     {
         CheckTransitions();
-        _HoldingSword = _Player._WeaponController.holdingSword;
+        _HoldingSword = _Player._WeaponController._HoldingSword;
     }
 
     public virtual void PhysicsUpdate()

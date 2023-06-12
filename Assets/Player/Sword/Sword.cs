@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    [field: SerializeField] public Player player { get; private set; }
-    [field: SerializeField] public SwordStateLogic stateLogic { get; private set; }
-    [field: SerializeField] public SwordMovement moveController { get; private set; }
+    [field: SerializeField] public Player _Player { get; private set; }
+    [field: SerializeField] public SwordStateLogic _StateLogic { get; private set; }
+    [field: SerializeField] public SwordMovement _MoveController { get; private set; }
 
     [field: SerializeField] public bool _IsEquipped { get; private set; }
+    private Transform body;
+
+    public float _DistanceToPlayer;
 
     public enum SwordState
     {
@@ -22,9 +25,12 @@ public class Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
-        stateLogic = GetComponent<SwordStateLogic>();
-        moveController = GetComponent<SwordMovement>();
+        _Player = GameObject.Find("Player").GetComponent<Player>();
+        _StateLogic = GetComponent<SwordStateLogic>();
+        _StateLogic.InitializeState(_Player, this);
+        _MoveController = GetComponent<SwordMovement>();
+        _MoveController.InitializeSword(this);
+        body = transform.Find("Body").transform;
 
         _State = SwordState.idle;
     }
@@ -35,13 +41,13 @@ public class Sword : MonoBehaviour
         switch (_State)
         {
             case SwordState.idle:
-                stateLogic.IdleState();
+                _StateLogic.IdleState();
                 break;
             case SwordState.flyingDangerously:
-                stateLogic.FlyingState();
+                _StateLogic.FlyingState();
                 break;
             case SwordState.heldByPlayer:
-                stateLogic.HeldState();
+                _StateLogic.HeldState();
                 break;
         }
     }
@@ -49,5 +55,11 @@ public class Sword : MonoBehaviour
     public void ChangeSwordState(SwordState newState)
     {
         _State = newState;
+    }
+
+    public void TurnOnOffBody()
+    {
+        if (body.gameObject.activeSelf == true) body.gameObject.SetActive(false);
+        else body.gameObject.SetActive(true);
     }
 }

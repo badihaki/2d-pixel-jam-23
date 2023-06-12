@@ -12,6 +12,7 @@ public class PlayerGroundedSuperState : PlayerState
     protected bool _Jump;
     protected bool _Attack;
     protected bool _Grab;
+    protected bool _Weapon;
 
     public override void LogicUpdate()
     {
@@ -21,6 +22,7 @@ public class PlayerGroundedSuperState : PlayerState
         _Jump = _Player._PlayerControls._Jump;
         _Attack = _Player._PlayerControls._Attack;
         _Grab = _Player._PlayerControls._Grab;
+        _Weapon = _Player._PlayerControls._Weapon;
     }
 
     public override void CheckTransitions()
@@ -29,5 +31,9 @@ public class PlayerGroundedSuperState : PlayerState
 
         if (_Player._CheckGround._IsGrounded() == false) _StateMachine.ChangeState(_Player._FallingState);
         if (_Jump) _StateMachine.ChangeState(_Player._JumpState);
+        if (_Weapon)
+        {
+            if (!_Player._WeaponController._HoldingSword) _StateMachine.ChangeState(_Player._CallSwordState);
+        }
     }
 }

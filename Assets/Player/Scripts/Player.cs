@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [field: SerializeField] public Animator _Animator { get; private set; }
     [field: SerializeField] public PlayerMovement _MovementController { get; private set; }
     [field: SerializeField] public PlayerWeapon _WeaponController { get; private set; }
+    private PlayerCamController cameraController;
 
     // state machine
     private PlayerStateMachine stateMachine;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     public PlayerPunch1State _Punch1State { get; private set; }
     public PlayerPunch2State _Punch2State { get; private set; }
     public PlayerPunch3State _Punch3State { get; private set; }
+    public PlayerCallSwordState _CallSwordState { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +42,8 @@ public class Player : MonoBehaviour
         _MovementController.InitializeController();
         _WeaponController = GetComponent<PlayerWeapon>();
         _WeaponController.InitializeWeaponHolder(this);
+        cameraController = GetComponent<PlayerCamController>();
+        cameraController.InitializeCamController(this);
 
         InitializeStateMachine();
     }
@@ -52,11 +56,15 @@ public class Player : MonoBehaviour
         // States
         _IdleState = new PlayerIdleState(this, stateMachine, "idle");
         _MoveState = new PlayerMoveState(this, stateMachine, "move");
+        
         _JumpState = new PlayerJumpState(this, stateMachine, "jump");
         _FallingState = new PlayerFallingState(this, stateMachine, "falling");
+        
         _Punch1State = new PlayerPunch1State(this, stateMachine, "punch1");
         _Punch2State = new PlayerPunch2State(this, stateMachine, "punch2");
         _Punch3State = new PlayerPunch3State(this, stateMachine, "punch3");
+
+        _CallSwordState = new PlayerCallSwordState(this, stateMachine, "callSword");
 
         // start the state machine
         stateMachine.InitializeStateMachine(_IdleState);

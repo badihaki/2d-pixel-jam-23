@@ -12,7 +12,15 @@ public class PlayerJumpState : PlayerAirbornSuperState
     {
         base.EnterState();
 
-        _Player._MovementController.JumpCharacter(_Player._CharacterSheet._MoveForce.y);
+        _Move = _Player._PlayerControls._Move;
+
+        if (_Move == Vector2.zero) _Player._MovementController.JumpCharacter(0.00f, _Player._CharacterSheet._MoveForce.y);
+        else
+        {
+            float horizontalDir = _Player._CharacterSheet._MoveForce.x;
+            _Player._MovementController.JumpCharacter(horizontalDir, _Player._CharacterSheet._MoveForce.y);
+        }
+        _Player._PlayerControls.UseJump();
     }
 
     public override void AnimationFinishedTrigger()

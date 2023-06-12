@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,9 +38,16 @@ public class PlayerMovement : MonoBehaviour
         facingRight = !facingRight;
     }
 
-    public void JumpCharacter(float force)
+    public void JumpCharacter(float horizontalSpeed, float jumpForce)
     {
-        moveController.AddForce(new Vector2(moveController.velocity.x, force), ForceMode2D.Impulse);
-        // moveController.AddForce(new Vector2(moveController.velocity.x, force));
+        moveController.AddForce(new Vector2(horizontalSpeed, jumpForce), ForceMode2D.Impulse);
+        // moveController.AddForce(new Vector2(moveController.velocity.x * horizontalSpeed, jumpForce), ForceMode2D.Impulse);
+    }
+
+    internal void _AirbornHorizontalMovement(float direction, float speed)
+    {
+        Vector2 newVelocity = new Vector2(direction * speed, moveController.velocity.y);
+        
+        moveController.velocity = newVelocity;
     }
 }
