@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <_Health>k__BackingField: 5
   <_Attack>k__BackingField: 1
-  <_MoveForce>k__BackingField: {x: 1.5, y: 2.35}
+  <_MoveForce>k__BackingField: {x: 1.5, y: 3.65}

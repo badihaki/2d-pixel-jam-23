@@ -17,6 +17,11 @@ public class SwordStateLogic : MonoBehaviour
     {
         print("sword is idle");
         CalculateDistance();
+
+        if (sword._MoveController._Controller.velocity != Vector2.zero)
+        {
+            sword._MoveController.SteadyDecreaseVelocity();
+        }
     }
 
     public void FlyingState()
@@ -29,6 +34,7 @@ public class SwordStateLogic : MonoBehaviour
     {
         print("sword is in player's hands");
         sword.transform.position = player._WeaponController._SwordPoint.position;
+        sword.transform.rotation = player._WeaponController._SwordPoint.rotation;
         sword._DistanceToPlayer = 0.00f;
     }
 

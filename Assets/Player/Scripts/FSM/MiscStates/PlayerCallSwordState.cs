@@ -31,7 +31,7 @@ public class PlayerCallSwordState : PlayerState
         if (!weapon) _StateMachine.ChangeState(_Player._IdleState);
         else
         {
-            if(_Player._WeaponController._Sword._DistanceToPlayer < 1.00f)
+            if(_Player._WeaponController._Sword._DistanceToPlayer < 0.350f)
             {
                 _Player._WeaponController.EquipSword();
                 _StateMachine.ChangeState(_Player._IdleState);
